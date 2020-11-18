@@ -174,10 +174,10 @@ function coutoire_scripts() {
 	// enqueue child RTL styles
 	wp_style_add_data( 'coutoire-style', 'rtl', 'replace' );
 
-	if ( ! coutoire_is_amp() ) {
-		// enqueue header spacing JS.
-		wp_enqueue_script( 'coutoire-fixed-header-spacing', get_stylesheet_directory_uri() . '/js/fixed-header-spacing.js', array(), wp_get_theme()->get( 'Version' ), true );
-	}
+	// if ( ! coutoire_is_amp() ) {
+	// 	// enqueue header spacing JS.
+	// 	wp_enqueue_script( 'coutoire-fixed-header-spacing', get_stylesheet_directory_uri() . '/js/fixed-header-spacing.js', array(), wp_get_theme()->get( 'Version' ), true );
+	// }
 
 }
 add_action( 'wp_enqueue_scripts', 'coutoire_scripts', 99 );
@@ -213,3 +213,44 @@ function coutoire_is_amp() {
 // updater for WordPress.com themes
 if ( is_admin() )
 	include dirname( __FILE__ ) . '/inc/updater.php';
+
+
+// SORELLA
+/**
+ * Enqueue scripts and styles.
+ */
+function sorella_scripts() {
+    wp_enqueue_script( 'jquery' );
+	// enqueue navigation JS.
+	wp_enqueue_script( 'sorella-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array(), wp_get_theme()->get( 'Version' ), true );
+
+}
+add_action( 'wp_enqueue_scripts', 'sorella_scripts', 99 );
+// Register menus for left and right side of header
+    function _sorella_register_menus() {
+        register_nav_menus( array(
+            'header-left-menu' => esc_html__('Header left menu items.', '_sorella'),
+            'header-right-menu' => esc_html__('Header right menu items', '_sorella')
+        ) );
+    }
+	add_action( 'init', '_sorella_register_menus' );
+	
+// Add description above each main menu item
+function add_description_to_menu($item_output, $item, $depth, $args) {
+		if (strlen($item->description) > 0 ) {
+			$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) .'"' : '';
+			$attributes .= ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) .'"' : '';
+			$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) .'"' : '';
+			$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) .'"' : '';
+	
+			$item_output = $args->before;
+			$item_output .= '<a'. $attributes .'>';
+			$item_output .= '<span class="description">' . esc_html($item->description) . '</span>';
+			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			$item_output .= '</a>';
+			$item_output .= $args->after;
+		}   
+		return $item_output;
+	
+	 }
+	 add_filter('walker_nav_menu_start_el', 'add_description_to_menu', 10, 4);
