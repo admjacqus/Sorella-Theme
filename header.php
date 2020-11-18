@@ -30,31 +30,29 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'varia' ); ?></a>
 
-		<header id="masthead" class="site-header alignfull">
+		<header id="masthead" class="sorella_site-header alignfull">
 
-			<?php get_template_part( 'template-parts/header/site', 'branding' ); ?>
+        <button class="menu-toggle">menu</button>
 
-			<?php if ( has_nav_menu( 'menu-1' ) ) : ?>
-				<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'varia' ); ?>">
-					<input type="checkbox" role="button" aria-haspopup="true" id="toggle" class="hide-visually">
-					<label for="toggle" id="toggle-menu" class="button">
-						<?php _e( 'Menu', 'varia' ); ?>
-						<span class="dropdown-icon open">+</span>
-						<span class="dropdown-icon close">&times;</span>
-						<span class="hide-visually expanded-text"><?php _e( 'expanded', 'varia' ); ?></span>
-						<span class="hide-visually collapsed-text"><?php _e( 'collapsed', 'varia' ); ?></span>
-					</label>
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'menu-1',
-							'menu_class'     => 'main-menu',
-							'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
-						)
-					);
-					?>
-				</nav><!-- #site-navigation -->
-			<?php endif; ?>
+            <div class="sorella_navigation">
+                <nav class="nav-header-left" role="navigation" aria-label="<?php esc_html__('Left Navigation', '_themename') ?>">
+                        <?php wp_nav_menu( array('theme_location' => 'header-left-menu', 'container' => false) ) ?>
+                    </nav>
+
+                    <nav class="nav-header-right" role="navigation" aria-label="< ?php esc_html__('Right Navigation', '_themename') ?>">
+                        <?php wp_nav_menu( array('theme_location' => 'header-right-menu', 'container' => false) ) ?>
+                    </nav>
+
+                    <div class="sorella_site-header__logo">
+                    <?php if(has_custom_logo()){
+                                the_custom_logo();
+                            } else { ?> 
+                                <a href="<?php echo esc_url(home_url('/')) ?>" class="c-header__blogname">
+                                    <?php esc_html(bloginfo('name')) ?>
+                                </a>
+                    <?php } ?>
+                    </div>
+            </div><!-- .sorella_navigation -->
 
 			<?php if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="social-navigation" aria-label="<?php esc_attr_e( 'Social Links Menu', 'varia' ); ?>">

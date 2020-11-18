@@ -4272,7 +4272,6 @@ a.wp-block-file__button {
 		display: block;
 	}
 	.content-area {
-		margin-top: 160px;
 		position: relative;
 		z-index: 2;
 	}
@@ -4308,5 +4307,176 @@ a.wp-block-file__button {
 @media screen and (max-width: 782px) {
 	html[amp] .logged-in .site-header {
 		top: 46px;
+	}
+}
+
+/**
+ * Sorella Theme Styles
+ */
+.sorella_navigation nav {
+	position: relative;
+	display: none;
+}
+
+.sorella_navigation.open nav {
+	display: block;
+}
+
+@media screen and (min-width: 800px) {
+	.sorella_navigation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.sorella_navigation .nav-header-left, .sorella_navigation .nav-header-right {
+	margin: 0;
+	float: none;
+	width: 100%;
+}
+
+.sorella_navigation .nav-header-left > .menu, .sorella_navigation .nav-header-right > .menu {
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	line-height: 1;
+	text-transform: uppercase;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.sorella_navigation .nav-header-left > .menu li, .sorella_navigation .nav-header-right > .menu li {
+	list-style-type: none;
+}
+
+.sorella_navigation .nav-header-left > .menu li li, .sorella_navigation .nav-header-right > .menu li li {
+	margin-right: 0;
+}
+
+.sorella_navigation .nav-header-left > .menu a, .sorella_navigation .nav-header-right > .menu a {
+	color: #222;
+	display: block;
+	border: none;
+	font-size: 10px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	line-height: 1;
+	margin-bottom: 1px;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	width: 100%;
+	text-decoration: none;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item, .sorella_navigation .nav-header-right > .menu .menu-item {
+	display: block;
+	float: none;
+	position: relative;
+	text-align: right;
+}
+
+@media screen and (min-width: 800px) {
+	.sorella_navigation .nav-header-left > .menu .menu-item, .sorella_navigation .nav-header-right > .menu .menu-item {
+		display: inline-block;
+		text-align: center;
+	}
+	.sorella_navigation .nav-header-left > .menu .menu-item a, .sorella_navigation .nav-header-right > .menu .menu-item a {
+		padding: 0 20px 18px;
+	}
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item span.description, .sorella_navigation .nav-header-right > .menu .menu-item span.description {
+	color: #f9a79b;
+	font-size: rem-calc(10);
+	font-weight: normal;
+	font-style: italic;
+	letter-spacing: 1px;
+	padding-bottom: 5px;
+	text-transform: lowercase;
+	display: block;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item.open, .sorella_navigation .nav-header-right > .menu .menu-item.open {
+	position: relative;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item.open > .sub-menu, .sorella_navigation .nav-header-right > .menu .menu-item.open > .sub-menu {
+	right: 50%;
+	margin-right: -100px;
+	opacity: 1;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item .sub-menu, .sorella_navigation .nav-header-right > .menu .menu-item .sub-menu {
+	background: #fef9f7;
+	right: -9999px;
+	opacity: 0;
+	position: absolute;
+	transition: opacity .4s ease-in-out;
+	width: 200px;
+	z-index: 99;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item .sub-menu a, .sorella_navigation .nav-header-right > .menu .menu-item .sub-menu a {
+	position: relative;
+	padding: 10px;
+	width: 200px;
+}
+
+.sorella_navigation .nav-header-left > .menu .menu-item .sub-menu::before, .sorella_navigation .nav-header-left > .menu .menu-item .sub-menu::after, .sorella_navigation .nav-header-right > .menu .menu-item .sub-menu::before, .sorella_navigation .nav-header-right > .menu .menu-item .sub-menu::after {
+	border: medium solid transparent;
+	bottom: 100%;
+	content: " ";
+	height: 0;
+	right: 50%;
+	pointer-events: none;
+	position: absolute;
+	width: 0;
+}
+
+@media screen and (min-width: 800px) {
+	.sorella_navigation .nav-header-left {
+		order: 1;
+	}
+	.sorella_navigation .nav-header-right {
+		order: 3;
+	}
+	.sorella_navigation .nav-header-left, .sorella_navigation .nav-header-right {
+		flex: 33% 1 0;
+		display: block;
+		text-align: center;
+	}
+}
+
+.sorella_site-header {
+	background-color: #ffffff;
+}
+
+.sorella_site-header .menu-toggle {
+	background-color: #fff;
+	border-width: 0;
+	color: #222;
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;
+	visibility: visible;
+}
+
+.sorella_site-header__logo {
+	order: 3;
+	max-width: 360px;
+	margin: auto;
+}
+
+@media screen and (min-width: 800px) {
+	.sorella_site-header .menu-toggle {
+		display: none;
+	}
+	.sorella_site-header__logo {
+		order: 2;
+		flex: 390px 0 1;
+		font-size: rem-calc(28);
 	}
 }
